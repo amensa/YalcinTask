@@ -1,0 +1,29 @@
+<mvc:View
+	controllerName="home.kpmg.VisaTask.controller.Detail"
+	xmlns="sap.m"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:mvc="sap.ui.core.mvc">
+
+	<semantic:SemanticPage
+		id="detailPage"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+		<semantic:titleHeading>
+			<Title
+				text="{EmployeeInfo>/PersonalID}"
+				level="H2"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<ObjectAttribute text="{EmployeeInfo>/PersonalName}" title="Employee Name"/>
+			<ObjectAttribute text="{EmployeeInfo>/Department}" title="Department"/>
+
+		</semantic:headerContent>
+		<semantic:content>
+
+		</semantic:content>
+
+
+	</semantic:SemanticPage>
+
+</mvc:View>

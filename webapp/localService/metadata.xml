@@ -1,0 +1,44 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSS_VISATASK_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="VisaRequest" sap:content-version="1">
+				<Key><PropertyRef Name="VisaID"/><PropertyRef Name="PersonalID"/></Key><Property Name="Payment" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Payment" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ReturnTime" Type="Edm.DateTime" Precision="8" sap:unicode="false" sap:label="return time" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DepartureTime" Type="Edm.DateTime" Precision="8" sap:unicode="false" sap:label="Departure time" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TimePeriod" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Time period"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Paid" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Paid" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="RequestReason" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Request reason"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="VisaType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="visa type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="VisaID" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="visa id" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PersonalID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="personal id"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="AttachmentsSet" Relationship="ZSS_VISATASK_SRV.VisatoAttachments" FromRole="FromRole_VisatoAttachments"
+					ToRole="ToRole_VisatoAttachments"/></EntityType>
+			<EntityType Name="Attachments" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="VisaID"/><PropertyRef Name="AttachmentID"/><PropertyRef Name="PersonalID"/></Key><Property Name="Content" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Binary String" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MimeType" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="mimetype" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100" m:FC_TargetPath="SyndicationTitle" m:FC_KeepInContent="false"
+					sap:unicode="false" sap:label="attachment name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="VisaID" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="visa id" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AttachmentID" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="attachment id"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PersonalID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="personal id"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="EmployeeInfo" sap:content-version="1">
+				<Key><PropertyRef Name="PersonalID"/></Key><Property Name="PersonalID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="personal id"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PersonalName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Personal name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Manager" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Direct Manager"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Department" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Department"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="VisatoAttachments" sap:content-version="1"><End Type="ZSS_VISATASK_SRV.VisaRequest" Multiplicity="1" Role="FromRole_VisatoAttachments"/><End Type="ZSS_VISATASK_SRV.Attachments" Multiplicity="*" Role="ToRole_VisatoAttachments"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_VisatoAttachments"><PropertyRef Name="PersonalID"/><PropertyRef Name="VisaID"/></Principal>
+					<Dependent Role="ToRole_VisatoAttachments"><PropertyRef Name="PersonalID"/><PropertyRef Name="VisaID"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZSS_VISATASK_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="VisaRequestSet" EntityType="ZSS_VISATASK_SRV.VisaRequest" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="AttachmentsSet" EntityType="ZSS_VISATASK_SRV.Attachments" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="EmployeeInfoCollection" EntityType="ZSS_VISATASK_SRV.EmployeeInfo" sap:content-version="1"/>
+				<AssociationSet Name="VisatoAttachmentsSet" Association="ZSS_VISATASK_SRV.VisatoAttachments" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="VisaRequestSet" Role="FromRole_VisatoAttachments"/><End EntitySet="AttachmentsSet" Role="ToRole_VisatoAttachments"/></AssociationSet><FunctionImport Name="EmployeeInfo" ReturnType="ZSS_VISATASK_SRV.EmployeeInfo" EntitySet="EmployeeInfoCollection" m:HttpMethod="GET"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZSS_VISATASK_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZSS_VISATASK_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
