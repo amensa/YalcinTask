@@ -15,6 +15,14 @@ sap.ui.define([], function () {
 			}
 
 			return parseFloat(sValue).toFixed(2);
+		},
+		VisaType : function (type) {
+			if(type === "S"){
+				return "Single";
+			} else {
+				return "Multiple";
+			}
 		}
+		
 	};
 });

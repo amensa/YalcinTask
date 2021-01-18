@@ -1,29 +1,43 @@
-<mvc:View
-	controllerName="home.kpmg.VisaTask.controller.Detail"
-	xmlns="sap.m"
-	xmlns:semantic="sap.f.semantic"
-	xmlns:footerbar="sap.ushell.ui.footerbar"
-	xmlns:mvc="sap.ui.core.mvc">
+<mvc:View controllerName="home.kpmg.VisaTask.controller.Detail" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:f="sap.ui.layout.form"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:mvc="sap.ui.core.mvc">
+	<semantic:MasterPage id="detailPage" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}" showFooter="true">
+		<f:SimpleForm title="{i18n>personalId} {EmployeeInfo>/PersonalID}" minWidth="1024" labelSpanL="3" labelSpanM="3"
+			layout="ResponsiveGridLayout" maxContainerCols="2" emptySpanL="2" emptySpanM="2" editable="true">
+			<f:content>
+				<Label text="{i18n>employeeName}"/>
+				<Text text="{EmployeeInfo>/PersonalName}"/>
+				<Label text="{i18n>managerName}"/>
+				<Text text="{EmployeeInfo>/Manager}"/>
+				<Label text="{i18n>departmentName}"/>
+				<Text text="{EmployeeInfo>/Department}"/>
+			</f:content>
+		</f:SimpleForm>
 
-	<semantic:SemanticPage
-		id="detailPage"
-		busy="{detailView>/busy}"
-		busyIndicatorDelay="{detailView>/delay}">
-		<semantic:titleHeading>
-			<Title
-				text="{EmployeeInfo>/PersonalID}"
-				level="H2"/>
-		</semantic:titleHeading>
-		<semantic:headerContent>
-			<ObjectAttribute text="{EmployeeInfo>/PersonalName}" title="Employee Name"/>
-			<ObjectAttribute text="{EmployeeInfo>/Department}" title="Department"/>
-
-		</semantic:headerContent>
 		<semantic:content>
-
+			<f:SimpleForm minWidth="1024" title="Visa Details" labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2"
+				emptySpanL="2" emptySpanM="2" editable="true">
+				<f:content>
+					<Label text="{i18n>VisaType}"/>
+					<Text text="{path:'VisaType', formatter:'.formatter.VisaType'}"/>
+					<Label text="{i18n>RequestReason}"/>
+					<Text text="{ReqReason}"/>
+					<Label text="{i18n>PaymentAmount} "/>
+					<Text text="{Payment}"/>
+					<Label text="{i18n>Status}"/>
+					<Text text="{path:'Status', formatter:'.formatter.Status'}"/>
+					<Label text="{i18n>Paid}"/>
+					<Text text="{path:'Paid', formatter:'.formatter.IsPaid'}"/>
+					<Label text="{i18n>TimePeriod}"/>
+					<Text text="{path:'TimePeriod', formatter:'.formatter.ToNumber'}"/>
+					<Label text="{i18n>departureDate}"/>
+					<Text text="{path:'DepTime', type:'sap.ui.model.type.Date'}"/>
+					<Label text="{i18n>returnDate}" visible="{= ${VisaType} === 'S' }"/>
+					<Text text="{ path:'ReturnTime', type:'sap.ui.model.type.Date'}" visible="{= ${VisaType} === 'S' }"/>
+				</f:content>
+			</f:SimpleForm>
 		</semantic:content>
-
-
-	</semantic:SemanticPage>
-
+		<semantic:customFooterContent>
+			<Button text="Edit" icon="sap-icon://edit" press="onEdit" visible="{EmployeeInfo>/enabled}"/>
+		</semantic:customFooterContent>
+	</semantic:MasterPage>
 </mvc:View>
