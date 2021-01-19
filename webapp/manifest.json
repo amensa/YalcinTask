@@ -74,6 +74,12 @@
 			"": {
 				"dataSource": "mainService",
 				"preload": true
+			},
+			"constant": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "./model/constant.json",
+				"preload": false
 			}
 		},
 		"routing": {
@@ -88,21 +94,19 @@
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "master",
-					"target": "master"
-				},
-				{
-					"pattern": "VisaRequestSet/{PersonalID}/{VisaID}",
-					"name": "detail",
-					"target": [
-						"master",
-						"detail"
-					]
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "master",
+				"target": "master"
+			}, {
+				"pattern": "VisaRequestSet/{PersonalID}/{VisaID}",
+				"name": "detail",
+				"target": ["master", "detail"]
+			}, {
+				"pattern": "Create",
+				"name": "Create",
+				"target": ["Create"]
+			}],
 			"targets": {
 				"master": {
 					"viewName": "Master",
@@ -123,8 +127,15 @@
 				"notFound": {
 					"viewName": "NotFound",
 					"viewId": "notFound"
+				},
+				"Create": {
+					"viewId": "create",
+					"viewName": "Create",
+					"viewLevel": 1,
+					"controlAggregation": "midColumnPages"
 				}
 			}
-		}
+		},
+		"flexEnabled": true
 	}
 }

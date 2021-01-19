@@ -190,6 +190,10 @@ sap.ui.define([
 				this._showDetail(oEvent.getParameter("listItem") || oEvent.getSource());
 			}
 		},
+		
+		onCreate : function (oItem) {
+			this.getRouter().navTo("Create");
+		},
 
 		/**
 		 * Event handler for the bypassed event, which is fired when no routing pattern matched.

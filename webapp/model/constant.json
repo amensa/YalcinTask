@@ -1,0 +1,19 @@
+{	
+	"Paid": [{
+        "Text": "Yes",
+        "RequestType": false
+    }, {
+        "Text": "No",
+        "RequestType": false
+    }],
+    "VisaType": [{
+        "key": "0",
+        "value": ""
+    }, {
+        "key": "S",
+        "value": "Single"
+    }, {
+        "key": "M",
+        "value": "Multiple"
+    }]
+}

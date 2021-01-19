@@ -1,10 +1,9 @@
 <mvc:View controllerName="home.kpmg.VisaTask.controller.Master" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:mvc="sap.ui.core.mvc">
-	<semantic:MasterPage id="page" title="masterView>/title" navButtonPress="onNavBack">
+	<semantic:MasterPage id="page" title="{masterView>/title}" navButtonPress="onNavBack" showNavButton="true">
 		<semantic:subHeader>
 			<Bar id="headerBar">
 				<contentMiddle>
-					<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%">
-					</SearchField>
+					<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%"></SearchField>
 				</contentMiddle>
 			</Bar>
 		</semantic:subHeader>
@@ -14,27 +13,19 @@
 				busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}"
 				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true"
 				updateFinished=".onUpdateFinished" selectionChange=".onSelectionChange">
-				<!--<headerToolbar>-->
-				<!--	<OverflowToolbar>-->
-				<!--		<SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" search=".onSearch" width="auto">-->
-				<!--			<layoutData>-->
-				<!--				<OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow"/>-->
-				<!--			</layoutData>-->
-				<!--		</SearchField>-->
-				<!--		<ToolbarSpacer/>-->
-				<!--		<Button id="sortButton" press=".onOpenViewSettings" icon="sap-icon://sort" type="Transparent"/>-->
-				<!--	</OverflowToolbar>-->
-				<!--</headerToolbar>-->
 				<items>
-					<ObjectListItem type="Navigation" press=".onSelectionChange" title="{VisaID}"></ObjectListItem>
+					<ObjectListItem press=".onSelectionChange" title="Visa {VisaID}">
+						<firstStatus>
+							<ObjectStatus title="" text="{path:'Status', formatter:'.formatter.Status'}"/>
+						</firstStatus>
+						<ObjectAttribute text="{path:'DepartureTime', type:'sap.ui.model.type.Date'}"/>
+						<ObjectAttribute text="{path:'ReturnTime', type:'sap.ui.model.type.Date'}"/>
+					</ObjectListItem>
 				</items>
 			</List>
 		</semantic:content>
-		
-		<!--<semantic:footerCustomAction>-->
-		<!--<Button text="{i18n>create}" icon="sap-icon://add" press="onCreate" visible="{EmployeeInfo>/enabled}" />-->
-		<!--</semantic:footerCustomAction>-->
+		<semantic:customFooterContent>
+			<Button text="Create" icon="sap-icon://add" press="onCreate" visible="{EmployeeInfo>/enabled}"/>
+		</semantic:customFooterContent>
 	</semantic:MasterPage>
 </mvc:View>
-
-
